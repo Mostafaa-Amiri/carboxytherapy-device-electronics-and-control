@@ -1,6 +1,6 @@
 # Carboxytherapy Device — Electronics, Firmware and HMI Development
 
-**Independent Engineering Development**  
+**Research and Development**  
 *STM32 Embedded Control · Controlled CO₂ Delivery · Pressure Feedback · Motorized Valve Regulation · Touchscreen HMI*
 
 ## Overview
@@ -9,7 +9,7 @@ The **Carboxytherapy Device** is a custom-developed, STM32-based system for cont
 
 The controller coordinates operator-selected **delivery volume, pressure, and timing** with real-time pressure measurements and motorized valve adjustment. Treatment programs provide predefined operating parameters for different application categories, while calibration and fault-monitoring functions support repeatable operation and controlled responses to abnormal conditions.
 
-**Mostafa Amiri independently developed the electronic hardware, embedded C firmware, HMI, and integrated control system.** This repository presents the implementation through STM32 source code, PCB visualizations, interface screenshots, and photographs of the completed device.
+**I developed the electronic hardware, embedded C firmware, HMI, and integrated control system.** This repository presents the implementation through STM32 source code, PCB visualizations, interface screenshots, and photographs of the completed device.
 
 ## System Architecture
 
