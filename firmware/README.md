@@ -37,12 +37,6 @@ The firmware coordinates pressure measurement, motor/valve control, operator com
 - [`Keil MDK-ARM project`](stm32f103-controller/MDK-ARM/uart_lcd_i2c_adc_pwm3_tim2_3gpio.uvprojx) — original project file.
 - [`Drivers/`](stm32f103-controller/Drivers/) — included STM32 HAL and CMSIS components used by the project, subject to their own license files.
 
-**External dependency:** The original Keil project references `EEPROM.c` and `EEPROM.h` using a relative `libraries` path outside the supplied firmware archive. Those files were not present in the upload. Consequently, the project is **not claimed to build as supplied** without recovering that external dependency and checking the original toolchain configuration.
-
-## Results and Experimental Evaluation
-
-The developer reports implementing and testing the embedded controller in an integrated device. The provided archive contains application code and interface logic, but no independent software-verification record or medical-device validation report. The source is presented as evidence of embedded development, not as verified firmware for clinical deployment.
-
 ## Related Documentation
 
 - [Hardware Development](../hardware/README.md)

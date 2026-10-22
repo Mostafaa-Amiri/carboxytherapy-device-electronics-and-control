@@ -6,11 +6,10 @@
 
 This section documents the custom electronic control board and its integration into the carboxytherapy device, from PCB design visualization and board assembly to the installed electrical and gas-control hardware.
 
-The hardware was designed and integrated by **Mostafa Amiri**. This public repository includes selected images and photographs; it does not contain editable PCB or schematic design files.
-
+The hardware was designed and integrated by me. This public repository includes selected images and photographs.
 ## System Architecture
 
-The electronic platform interfaces the STM32 controller with pressure sensing, motor/valve drive circuitry, touchscreen communications, power distribution, and device controls. The gas system includes a CO₂ supply, controlled valve, and pressure-monitoring path. A heater and UV-related hardware are also described by the developer, but their full circuits are not identifiable from the provided images alone.
+The electronic platform interfaces the STM32 controller with pressure sensing, motor/valve drive circuitry, touchscreen communications, power distribution, and device controls. The gas system includes a CO₂ supply, controlled valve, and pressure-monitoring path. A heater and UV-related hardware are also considered.
 
 ## Design and Implementation
 
