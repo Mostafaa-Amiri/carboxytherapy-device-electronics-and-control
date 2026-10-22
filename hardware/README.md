@@ -40,10 +40,6 @@ The firmware uses an **ADS1115 I²C ADC** to acquire pressure feedback. Motor-dr
 
 <p align="center"><em>Internal equipment integration, including electronic boards, wiring, gas-related components, and mechanical assembly.</em></p>
 
-## Results and Experimental Evaluation
-
-The developer reports completing and testing the integrated prototype. The provided materials substantiate the PCB design and assembled hardware visually, but do not include pressure-calibration reports, delivered-volume metrology, electrical-safety reports, or regulatory approval documentation. Performance and clinical suitability are therefore not independently established by this repository.
-
 ## Related Documentation
 
 - [Embedded Firmware](../firmware/README.md)
