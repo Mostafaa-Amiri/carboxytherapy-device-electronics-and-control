@@ -46,4 +46,3 @@ The screenshots demonstrate the implemented interface design and device-specific
 
 - [Embedded Firmware](../firmware/README.md)
 - [Hardware Development](../hardware/README.md)
-- [Results and Media](../results-and-media/README.md)

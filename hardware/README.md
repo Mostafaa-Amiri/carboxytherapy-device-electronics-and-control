@@ -48,4 +48,3 @@ The developer reports completing and testing the integrated prototype. The provi
 
 - [Embedded Firmware](../firmware/README.md)
 - [HMI Development](../hmi/README.md)
-- [Results and Media](../results-and-media/README.md)

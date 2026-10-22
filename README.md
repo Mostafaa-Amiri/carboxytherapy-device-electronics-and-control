@@ -80,7 +80,7 @@ The repository includes screenshots of the interface and its development environ
 The electronics, firmware, gas-control mechanism, and HMI were integrated into a complete working prototype and subjected to functional testing during development. Testing included device operation, motor/valve response, pressure-feedback behavior, calibration, and fault-handling functions.
 
 <p align="center">
-  <img src="results-and-media/images/assembled-device.jpg" alt="Completed carboxytherapy device with touchscreen interface" width="47%">
+  <img src="hardware/images/assembled-device.jpg" alt="Completed carboxytherapy device with touchscreen interface" width="47%">
   <img src="hardware/images/internal-device-assembly.jpg" alt="Internal mechanical and electrical integration of the carboxytherapy device" width="47%">
 </p>
 
@@ -104,7 +104,6 @@ This repository documents the engineering prototype and its implementation; it d
 | **[Hardware](hardware/README.md)** | Custom PCB design visualization, assembled electronics, pressure-sensing and motor-control interfaces, and integration photographs. |
 | **[Embedded Firmware](firmware/README.md)** | STM32F103 embedded C application, CubeMX configuration, Keil project, and relevant HAL/CMSIS components. |
 | **[HMI Development](hmi/README.md)** | DWIN DGUS interface screens, operator navigation, and screenshots from the HMI development environment. |
-| **[Results and Media](results-and-media/README.md)** | Photographs of the completed prototype and internal mechanical/electrical assembly. |
 
 ---
 

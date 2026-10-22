@@ -47,4 +47,3 @@ The developer reports implementing and testing the embedded controller in an int
 
 - [Hardware Development](../hardware/README.md)
 - [HMI Development](../hmi/README.md)
-- [Results and Media](../results-and-media/README.md)
