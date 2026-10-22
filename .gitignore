@@ -1,0 +1,26 @@
+# Embedded build outputs
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.lnp
+*.dep
+*.bak
+*.tmp
+*.uvoptx
+*.uvguix.*
+*.dbgconf
+*.scvd
+*.iex
+Objects/
+Listings/
+DebugConfig/
+# Editor/OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you reference this device development project in academic work, please cite this repository."
+type: software
+title: "Carboxytherapy Device — Electronics, Firmware and HMI Development"
+authors:
+  - family-names: "Amiri"
+    given-names: "Mostafa"
+abstract: "Custom electronic control board, STM32F103 firmware, motorized valve regulation, pressure sensing, fault monitoring, calibration, and touchscreen HMI for an integrated carboxytherapy device prototype."
+repository-code: "https://github.com/Mostafaa-Amiri/carboxytherapy-device-electronics-and-control"
+url: "https://github.com/Mostafaa-Amiri/carboxytherapy-device-electronics-and-control"
