@@ -1,83 +1,121 @@
 # Carboxytherapy Device — Electronics, Firmware and HMI Development
 
-**Embedded Medical-Device Engineering · Independent Hardware and Firmware Development**  
-*STM32-Based Control · CO₂ Delivery Monitoring · Motorized Valve Regulation · Touchscreen HMI*
+**Independent Engineering Development**  
+*STM32 Embedded Control · Controlled CO₂ Delivery · Pressure Feedback · Motorized Valve Regulation · Touchscreen HMI*
 
 ## Overview
 
-This project documents the **end-to-end electronics and embedded-control development of a carboxytherapy device**, including custom PCB circuitry, STM32 firmware, a touchscreen human–machine interface (HMI), actuator control, pressure sensing, calibration, and fault monitoring.
+The **Carboxytherapy Device** is a custom-developed, STM32-based system for controlling the delivery of carbon dioxide (CO₂) through a motor-regulated gas-delivery mechanism. The project encompasses the complete electronic and embedded-system development process, from circuit and PCB design to firmware, touchscreen interface development, device assembly, and functional testing.
 
-A carboxytherapy device is designed to administer controlled quantities of medical carbon dioxide (CO₂) through a clinical delivery system. The engineering challenge is to coordinate the requested delivery volume, pressure, and duration with real-time sensing and protective responses to abnormal operating conditions.
+The controller coordinates operator-selected **delivery volume, pressure, and timing** with real-time pressure measurements and motorized valve adjustment. Treatment programs provide predefined operating parameters for different application categories, while calibration and fault-monitoring functions support repeatable operation and controlled responses to abnormal conditions.
 
-The device was designed, assembled, programmed, integrated, and tested by **Mostafa Amiri**. The repository presents the implemented engineering work using the available source code, PCB images, HMI screens, and device photographs. It does not provide clinical operating instructions or evidence of regulatory approval.
+**Mostafa Amiri independently developed the electronic hardware, embedded C firmware, HMI, and integrated control system.** This repository presents the implementation through STM32 source code, PCB visualizations, interface screenshots, and photographs of the completed device.
 
 ## System Architecture
 
-The central **STM32F103-based controller** coordinates the user interface, pressure-measurement electronics, motor-driven valve adjustment, control timing, actuator outputs, and fault/status reporting.
+An **STM32F103 microcontroller** serves as the central controller, connecting the gas-delivery mechanism, pressure-measurement circuitry, motor driver, touchscreen, and supporting electrical subsystems.
 
-| Subsystem | Engineering role |
+| Subsystem | Function |
 | --- | --- |
-| **CO₂ supply and delivery path** | Gas cartridge/cylinder, controlled valve, and injection interface |
-| **Pressure acquisition** | Feedback from the gas-pressure sensor through an ADS1115 external ADC over I²C |
-| **Motor and valve actuation** | MCU-controlled PWM and direction signals for motorized pressure/valve adjustment |
-| **Delivery control** | User-selected volume, pressure, time, and program settings managed by the firmware |
-| **Protection and diagnostics** | Pressure-limit monitoring, pressure-anomaly detection, timing/fault handling, and status indications |
-| **Touchscreen HMI** | DWIN/DGUS interface connected to the controller through UART with DMA |
-| **Additional hardware** | Heater and UV-related subsystems reported as part of the device design |
+| **CO₂ supply and delivery** | Gas cylinder/cartridge, regulated flow path, and delivery interface |
+| **Pressure measurement** | Pressure-sensor acquisition through an ADS1115 analog-to-digital converter over I²C |
+| **Motorized valve control** | PWM-based motor actuation and directional control for adjusting the gas-delivery mechanism |
+| **Delivery management** | Processing of selected pressure and volume settings, operating sequences, and calculated delivery timing |
+| **Calibration** | Automated motor/valve adjustment and calibration-state management |
+| **Monitoring and protection** | Pressure-limit supervision, detection of abnormal pressure behavior, timeout handling, and fault-driven interruption |
+| **Touchscreen interface** | DWIN DGUS HMI communicating with the STM32 through UART |
+| **Auxiliary electronics** | Heater, UV-related circuitry, and supporting power and control interfaces |
+
+The control sequence combines operator inputs with pressure feedback. The firmware manages valve adjustment, monitors operating conditions, updates the HMI, and responds to detected faults. This architecture integrates actuator control, measurement, operator interaction, and protective functions in a single embedded platform.
 
 ## Hardware Development and Integration
 
-The electronics were developed around a custom main PCB combining controller interfaces, power and actuation circuitry, sensor connections, and supporting components. The images below show the PCB design visualization and assembled hardware.
+The device uses a **custom-designed electronic control PCB** integrating the microcontroller and interfaces for sensing, motor actuation, communication, power distribution, and auxiliary functions. The hardware was designed and assembled as part of the complete device development.
 
 <p align="center">
-  <img src="hardware/images/main-pcb-3d-render.png" alt="Carboxytherapy main PCB 3D design visualization" width="47%">
-  <img src="hardware/images/main-pcb-assembled-top.jpg" alt="Assembled carboxytherapy electronic control PCB" width="47%">
+  <img src="hardware/images/main-pcb-3d-render.png" alt="3D visualization of the custom carboxytherapy control PCB" width="47%">
+  <img src="hardware/images/main-pcb-assembled-top.jpg" alt="Assembled custom carboxytherapy control PCB" width="47%">
 </p>
 
-<p align="center"><em>Custom electronic control board: PCB 3D representation (left) and assembled board (right).</em></p>
+<p align="center"><em>Custom control electronics: PCB design visualization (left) and assembled circuit board (right).</em></p>
 
-The physical prototype also includes the enclosure, gas supply arrangement, touchscreen, internal electrical wiring, and sensor/actuator integration.
+The final assembly combines the electronic controller with the CO₂ supply, pressure-sensing path, motor-driven valve mechanism, touchscreen, and internal mechanical and electrical components.
 
-[Explore the hardware documentation](hardware/README.md).
+[Explore the hardware design and integration](hardware/README.md).
 
-## Device Integration and Testing
+## Embedded Control and Protective Functions
 
-The assembled prototype and internal integration are documented below. The developer reports that the complete system was functionally tested, including control and protective behaviors; formal validation data and regulatory certification records were not included in the supplied archive.
+The firmware, developed in **C for the STM32F103 platform**, implements the device's operating logic, sensor acquisition, actuator commands, calibration, HMI communication, and fault handling.
+
+Key control functions include:
+
+- **Pressure-feedback regulation:** Acquires pressure measurements and adjusts the motorized valve mechanism in response to the selected operating pressure.
+- **Configurable operating programs:** Manages user-selected volume and pressure parameters, predefined program settings, and the corresponding delivery timing.
+- **Automatic motor calibration:** Executes calibration and readiness sequences to establish the valve-control operating state.
+- **Abnormal-pressure detection:** Monitors pressure limits and unexpected pressure behavior, including conditions associated with needle or delivery-path faults.
+- **Protective interruption and diagnostics:** Implements pressure-related stop conditions, fault indications, audible alerts, and timeout/error handling. The wider hardware design also incorporates temperature and electrical-fault protection functions.
+- **Real-time HMI communication:** Processes touchscreen commands and updates device status, settings, and warning indications through a UART-based interface.
+
+The application uses STM32 timer/PWM peripherals, GPIO control, I²C pressure acquisition, and UART/DMA communications. Its state-based logic coordinates delivery, calibration, operator commands, and protective responses.
+
+[Explore the STM32 firmware and development project](firmware/README.md).
+
+## Touchscreen HMI Development
+
+A custom **DWIN DGUS touchscreen interface** provides program selection, parameter configuration, operational status, and device information. The HMI was designed alongside the controller firmware, with bidirectional communication between the display and STM32 microcontroller.
 
 <p align="center">
-  <img src="results-and-media/images/assembled-device.jpg" alt="Completed carboxytherapy device with touchscreen" width="47%">
-  <img src="hardware/images/internal-device-assembly.jpg" alt="Carboxytherapy device internal assembly and CO2 supply arrangement" width="47%">
+  <img src="hmi/images/treatment-selection.jpg" alt="Carboxytherapy touchscreen program selection" width="47%">
+  <img src="hmi/images/operational-information.jpg" alt="Carboxytherapy touchscreen operating information" width="47%">
 </p>
 
-<p align="center"><em>Integrated prototype (left) and internal mechanical and electrical assembly (right).</em></p>
+<p align="center"><em>Custom touchscreen interface: program selection (left) and operating information (right).</em></p>
+
+The repository includes screenshots of the interface and its development environment. Editable PCB/schematic files and native HMI project files are intentionally not distributed.
+
+[Explore the HMI design](hmi/README.md).
+
+## Integrated Prototype and Testing
+
+The electronics, firmware, gas-control mechanism, and HMI were integrated into a complete working prototype and subjected to functional testing during development. Testing included device operation, motor/valve response, pressure-feedback behavior, calibration, and fault-handling functions.
+
+<p align="center">
+  <img src="results-and-media/images/assembled-device.jpg" alt="Completed carboxytherapy device with touchscreen interface" width="47%">
+  <img src="hardware/images/internal-device-assembly.jpg" alt="Internal mechanical and electrical integration of the carboxytherapy device" width="47%">
+</p>
+
+<p align="center"><em>Completed device (left) and internal electronic and mechanical integration (right).</em></p>
+
+This repository documents the engineering prototype and its implementation; it does not include clinical validation records, independently verified delivery-accuracy measurements, or regulatory approval documentation.
 
 ## Engineering Contributions
 
-- **Electronic hardware:** custom PCB design, analog/digital circuitry, power and actuator interfaces, and integration into the assembled device.
-- **STM32 firmware:** embedded C development for peripheral acquisition, motor/PWM control, touchscreen communication, operating modes, and calibration.
-- **Pressure-feedback control:** acquisition of pressure measurements and adjustment of the motor-driven valve mechanism.
-- **Safety-oriented control:** implemented overpressure and pressure-anomaly responses, fault/status handling, and control-interruption logic; additional temperature and electrical protection functions were reported by the developer.
-- **Automatic calibration:** motor/valve calibration and readiness-state handling integrated with device operation.
-- **HMI development:** touchscreen layouts, operating screens, mode selection, and controller–display data exchange.
-- **Prototype integration:** physical assembly, subsystem integration, troubleshooting, and reported functional testing.
+- **End-to-end electronic development:** Circuit design, custom PCB layout, board assembly, power and signal interfaces, and system-level integration.
+- **Embedded firmware engineering:** STM32F103 C programming, peripheral configuration, actuator coordination, operating-state logic, and communication protocols.
+- **Closed-loop actuation:** Pressure-sensor acquisition and motorized valve adjustment, including automatic calibration procedures.
+- **Fault detection and protective control:** Pressure monitoring, abnormal-condition detection, operating interruptions, and diagnostic/status reporting.
+- **Human–machine interface:** DWIN touchscreen screen design, program navigation, parameter exchange, and controller-driven feedback.
+- **Prototype realization:** Mechanical/electronic integration, system bring-up, troubleshooting, and functional evaluation of the assembled device.
 
 ## Repository Sections
 
 | Section | Description |
 | --- | --- |
-| **[Hardware](hardware/README.md)** | Custom PCB render, assembled boards, hardware integration, sensors, motor/valve electronics, and enclosure photographs. |
-| **[Embedded Firmware](firmware/README.md)** | Original STM32F103 C source, CubeMX configuration, Keil project files, HAL/CMSIS dependencies, and firmware architecture. |
-| **[HMI Development](hmi/README.md)** | DWIN touchscreen screens, treatment-mode navigation, information display, and HMI editor screenshots. |
-| **[Results and Media](results-and-media/README.md)** | Assembled device and photographic evidence of the integrated prototype. |
+| **[Hardware](hardware/README.md)** | Custom PCB design visualization, assembled electronics, pressure-sensing and motor-control interfaces, and integration photographs. |
+| **[Embedded Firmware](firmware/README.md)** | STM32F103 embedded C application, CubeMX configuration, Keil project, and relevant HAL/CMSIS components. |
+| **[HMI Development](hmi/README.md)** | DWIN DGUS interface screens, operator navigation, and screenshots from the HMI development environment. |
+| **[Results and Media](results-and-media/README.md)** | Photographs of the completed prototype and internal mechanical/electrical assembly. |
+
+---
 
 ## Copyright and Citation
 
 Copyright © 2026 Mostafa Amiri. All rights reserved.
 
-This repository is publicly accessible for research visibility and professional portfolio purposes. **No general open-source license is granted for the original project materials.** Third-party STM32 HAL/CMSIS components retain their respective licenses.
+This repository is publicly accessible to document the engineering development and demonstrate the completed project. **No general open-source license is granted for the original project materials.** Third-party software components retain their respective licenses.
 
-For reuse permissions, see [Copyright and Permissions](COPYRIGHT.md). For academic attribution, see [CITATION.cff](CITATION.cff).
+For reuse permissions, see [Copyright and Permissions](COPYRIGHT.md). For attribution, see [CITATION.cff](CITATION.cff).
 
 ---
 
-**Electronics, firmware, HMI development, and system integration:** [Mostafa Amiri](https://github.com/Mostafaa-Amiri).
+**Electronics, embedded firmware, HMI, and system integration:** [Mostafa Amiri](https://github.com/Mostafaa-Amiri).
